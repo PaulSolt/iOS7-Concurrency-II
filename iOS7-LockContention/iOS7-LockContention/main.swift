@@ -31,7 +31,7 @@ for _ in 0..<numberOfIterations {
     }
     
 }
-//group.wait()    // This is a blocking call, no code below executes until this finishes (which depends on our enter/leave being balanced)
+group.wait()    // This is a blocking call, no code below executes until this finishes (which depends on our enter/leave being balanced)
 
 
 var endTime = Date()
