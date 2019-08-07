@@ -31,6 +31,8 @@ for _ in 0..<numberOfIterations {
     }
     
 }
+
+// THREAD BUG: Try commenting this line out, and use Thread Sanitizer to catch the issue (Scheme > Diagnostics)
 group.wait()    // This is a blocking call, no code below executes until this finishes (which depends on our enter/leave being balanced)
 
 
@@ -39,8 +41,9 @@ var elapsedTime = endTime.timeIntervalSinceReferenceDate - startTime.timeInterva
 
 print("Time elapsed to add \(numberOfIterations): \(elapsedTime) seconds")
 
-
-sharedResource = 0
+//: > THREAD BUG: If you comment out the group.wait() above you will have a thread issue when you try to reset `sharedResource = 0` (without locks), because the async operations are now running at the same time as the following line of code.
+//: > You can catch this issue by enabling the Scheme settings (iPhone or Mac app, not a playground), and then running your app.
+sharedResource = 0  // Potential Issue: Thread 1: Data race detected
 
 let myQueue = DispatchQueue(label: "Shared Access Queue")
 //print("Global qos: \(DispatchQueue.global().qos)")
