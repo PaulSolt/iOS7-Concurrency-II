@@ -1,10 +1,12 @@
-//: [Previous](@previous)
+//
+//  main.swift
+//  iOS7-LockContention
+//
+//  Created by Paul Solt on 8/7/19.
+//  Copyright © 2019 Lambda, Inc. All rights reserved.
+//
 
 import Foundation
-
-//DispatchQueue.global().async { }  // background thread
-//DispatchQueue.main.async { } // main thread
-//DispatchQueue.async(<#T##DispatchQueue#>) // probably on some background thread
 
 var sharedResource = 0
 let lock = NSLock()
@@ -51,8 +53,8 @@ for _ in 0..<numberOfIterations {
     
     // async
     myQueue.async {
-        //    DispatchQueue.global().async {
-        
+//    DispatchQueue.global().async {
+
         sharedResource += 1
         group.leave()
     }
@@ -67,4 +69,6 @@ elapsedTime = endTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSin
 
 print("Time elapsed to add \(numberOfIterations): \(elapsedTime) seconds")
 
+
 //: [Next](@next)
+
