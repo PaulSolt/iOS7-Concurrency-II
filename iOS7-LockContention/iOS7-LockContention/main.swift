@@ -31,7 +31,7 @@ for _ in 0..<numberOfIterations {
     }
     
 }
-group.wait()    // This is a blocking call, no code below executes until this finishes (which depends on our enter/leave being balanced)
+//group.wait()    // This is a blocking call, no code below executes until this finishes (which depends on our enter/leave being balanced)
 
 
 var endTime = Date()
@@ -61,7 +61,9 @@ for _ in 0..<numberOfIterations {
     
 }
 
+//print("waiting")
 group.wait()
+//print("done")
 
 endTime = Date()
 
@@ -70,5 +72,9 @@ elapsedTime = endTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSin
 print("Time elapsed to add \(numberOfIterations): \(elapsedTime) seconds")
 
 
-//: [Next](@next)
 
+
+//exit(20)  0 = Success, Anything else is failure
+
+// Don't exit my app, keep it alive
+RunLoop.current.run()

@@ -3,5 +3,6 @@
     <pages>
         <page name='Basic Locks'/>
         <page name='Lock Contention'/>
+        <page name='Unlock Exercise'/>
     </pages>
 </playground>
